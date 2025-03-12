@@ -1,23 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-background text-white antialiased;
-  }
+body {
+  @apply bg-dim-900 text-dim-100;
 }
 
-@layer components {
-  .card {
-    @apply bg-surface rounded-lg p-6 shadow-lg;
-  }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-@layer utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+::-webkit-scrollbar-track {
+  @apply bg-dim-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-dim-600 rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-dim-500;
+}
+
+input, textarea, select {
+  @apply bg-dim-800 border-dim-700 text-dim-100 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply ring-primary-400 border-primary-400 !important;
+}
+
+.input-range::-webkit-slider-thumb {
+  @apply bg-primary-500;
+}
+
+.input-range::-moz-range-thumb {
+  @apply bg-primary-500;
 }
