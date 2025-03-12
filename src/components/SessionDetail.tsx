@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
-import { PracticeSession, PracticeSessionItem } from '../models/models';
+import { useAuth } from '../contexts/AuthContext';
+import { PracticeSession } from '../models/models';
 import { format } from 'date-fns';
-import { Clock, Calendar, Save, ArrowLeft, Music, ChevronDown, ChevronUp } from 'lucide-react';
+import { Clock, Calendar, Save, ArrowLeft, Music } from 'lucide-react';
 import {
   getPracticeSession,
   updatePracticeSession,
@@ -12,13 +12,12 @@ import {
 
 const SessionDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { currentUser, isLoading } = useFirebase();
+  const { currentUser, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [session, setSession] = useState<PracticeSession | null>(null);
   const [notes, setNotes] = useState('');
   const [itemNotes, setItemNotes] = useState<Record<string, string>>({});
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   
@@ -58,13 +57,6 @@ const SessionDetail: React.FC = () => {
     
     fetchSession();
   }, [currentUser, id]);
-
-  const toggleItemExpansion = (itemId: string) => {
-    setExpandedItems(prev => ({
-      ...prev,
-      [itemId]: !prev[itemId]
-    }));
-  };
 
   const handleSave = async () => {
     if (!currentUser || !session || !id) return;
@@ -180,19 +172,11 @@ const SessionDetail: React.FC = () => {
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-900 text-primary-300 mr-2">
                         {item.durationInMinutes} min
                       </span>
-                      {item.sections && item.sections.length > 0 && (
-                        <button 
-                          onClick={() => toggleItemExpansion(item.id)}
-                          className="p-1 text-dim-400 hover:text-dim-200"
-                        >
-                          {expandedItems[item.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                        </button>
-                      )}
                     </div>
                   </div>
                   
                   {/* Display sections if expanded and they exist */}
-                  {expandedItems[item.id] && item.sections && item.sections.length > 0 && (
+                  {item.sections && item.sections.length > 0 && (
                     <div className="mb-3 space-y-2 border-b border-dim-700 pb-3">
                       {item.sections.map(section => (
                         <div key={section.id} className="bg-dim-700 p-2 rounded">

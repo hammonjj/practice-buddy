@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { getPracticeSessions, getRoutines } from '../lib/localStorageDB';
 import { PracticeSession, Routine } from '../models/models';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
@@ -22,7 +22,7 @@ ChartJS.register(
 );
 
 const Dashboard: React.FC = () => {
-  const { currentUser, userData, isLoading } = useFirebase();
+  const { currentUser, userData, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [sessions, setSessions] = useState<PracticeSession[]>([]);

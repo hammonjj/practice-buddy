@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { getPracticeSessions, getRoutines, createPracticeSession, createSpontaneousPracticeSession } from '../lib/localStorageDB';
 import { PracticeSession, Routine } from '../models/models';
 import { ChevronLeft, ChevronRight, Plus, Clock, Calendar as CalendarIcon, X, Check, Edit, Music } from 'lucide-react';
@@ -18,7 +18,7 @@ import {
 } from 'date-fns';
 
 const Calendar: React.FC = () => {
-  const { currentUser, userData, isLoading } = useFirebase();
+  const { currentUser, userData, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [currentDate, setCurrentDate] = useState(new Date());

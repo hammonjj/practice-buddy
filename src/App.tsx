@@ -1,6 +1,5 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { FirebaseContext, useFirebase as useAuth } from './contexts/AuthContext';
+import { FirebaseContext, useAuth } from './contexts/AuthContext';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';

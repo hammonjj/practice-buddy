@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { 
   User as SupabaseUser, 
   Session, 
@@ -20,13 +20,13 @@ interface AuthContextType {
 }
 
 // Create context with default values
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 // Custom hook to access the auth context
-export const useFirebase = () => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useFirebase must be used within a FirebaseContext');
+    throw new Error('useAuth must be used within a AuthContext');
   }
   return context;
 };

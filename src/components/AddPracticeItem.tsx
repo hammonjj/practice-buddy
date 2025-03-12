@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { PracticeItem } from '../models/models';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,7 +8,7 @@ import { Save, ArrowLeft } from 'lucide-react';
 import { addPracticeItem } from '../lib/localStorageDB';
 
 const AddPracticeItem: React.FC = () => {
-  const { currentUser, userData, isLoading } = useFirebase();
+  const { currentUser, userData, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [name, setName] = useState('');

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Routine, RoutineSection } from '../models/models';
 import { v4 as uuidv4 } from 'uuid';
 import { Save, ArrowLeft, Plus, X, ChevronUp, ChevronDown, GripVertical, Clock } from 'lucide-react';
 import { addRoutine } from '../lib/localStorageDB';
 
 const AddRoutine: React.FC = () => {
-  const { currentUser, isLoading } = useFirebase();
+  const { currentUser, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [name, setName] = useState('');

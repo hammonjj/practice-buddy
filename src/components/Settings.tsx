@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Save, ArrowLeft } from 'lucide-react';
 
 const Settings: React.FC = () => {
-  const { currentUser, userData, isLoading, updateUserData } = useFirebase();
+  const { currentUser, userData, isLoading, updateUserData } = useAuth();
   const navigate = useNavigate();
   
   const [displayName, setDisplayName] = useState('');

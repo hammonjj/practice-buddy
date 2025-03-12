@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { 
   Music, 
   Settings, 
@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
-  const { currentUser, signOut } = useFirebase();
+  const { currentUser, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 

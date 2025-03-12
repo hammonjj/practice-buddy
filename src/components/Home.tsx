@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Routine, PracticeSession } from '../models/models';
 import { format } from 'date-fns';
 import { Clock, Play, PlusCircle, Filter, Trash2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -11,7 +11,7 @@ import {
 } from '../lib/localStorageDB';
 
 const Home: React.FC = () => {
-  const { currentUser, isLoading } = useFirebase();
+  const { currentUser, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [routines, setRoutines] = useState<Routine[]>([]);

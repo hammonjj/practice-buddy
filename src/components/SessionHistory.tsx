@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { PracticeSession } from '../models/models';
 import { format } from 'date-fns';
 import { Clock, Calendar, ChevronRight, Music } from 'lucide-react';
 import { getPracticeSessions } from '../lib/localStorageDB';
 
 const SessionHistory: React.FC = () => {
-  const { currentUser, isLoading } = useFirebase();
+  const { currentUser, isLoading } = useAuth();
   const navigate = useNavigate();
   
   const [sessions, setSessions] = useState<PracticeSession[]>([]);

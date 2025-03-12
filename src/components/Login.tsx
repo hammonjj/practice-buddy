@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFirebase } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Music } from 'lucide-react';
 
 const Login: React.FC = () => {
@@ -11,7 +11,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   
-  const { signIn, signUp, currentUser } = useFirebase();
+  const { signIn, signUp, currentUser } = useAuth();
   const navigate = useNavigate();
 
   // Redirect to dashboard if already authenticated
